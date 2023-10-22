@@ -11,11 +11,11 @@
 int
 cmp(const void *a, const void *b)
 {
-    long long a = *(long long*) a;
-    long long b = *(long long*) b;
-    if (a > b) {
+    long long a_new = *(long long*) a;
+    long long b_new = *(long long*) b;
+    if (a_new > b_new) {
         return -1;
-    } else if (a < b){
+    } else if (a_new < b_new){
         return 1;
     } 
     return 0;
@@ -25,12 +25,13 @@ main(int argc, char *argv[])
 {
     long long nums[argc - 1];
     char *ep = NULL;
-    for(long long i = 1, i < argc - 1, i++) {
+    for(long long i = 1; i < argc; i++) {
        nums[i-1] = strtoll(argv[i], &ep, 17);
     }
     qsort(nums, argc - 1, sizeof(*nums), cmp);
-    for (long long i = 0 , i < argc -1, i++) {
+    for (long long i = 0; i < argc -1; i++) {
         printf("%lld\n", nums[i]);
     }
-    return 0
+    return 0;
+    
 }
